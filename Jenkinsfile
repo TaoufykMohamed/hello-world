@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('1. Récupération du code') {
             steps {
-                git branch: 'ci/cd', url: 'https://github.com/TaoufykMohamed/hello-world.git'
+                git branch: 'ci/cd', url: 'https://github.com/TaoufykMohamed/hello-world'
             }
         }
 
