@@ -8,7 +8,7 @@ metadata:
   labels:
     app: hello-world
 spec:
-  replicas: 2
+  replicas: 10
   selector:
     matchLabels:
       app: hello-world
@@ -22,6 +22,13 @@ spec:
           image: taoufykmed/demo-app:1.0
           ports:
             - containerPort: 8081
+          volumeMounts:
+            - name: hello-world-storage
+              mountPath: /app/data
+      volumes:
+        - name: hello-world-storage
+          persistentVolumeClaim:
+            claimName: pvc-hello-world
 
 ---
 
@@ -33,10 +40,27 @@ kind: Service
 metadata:
   name: hello-world-service
 spec:
-  type: NodePort # Permet d'exposer le service à l'extérieur du cluster (utile pour Minikube)
+  type: NodePort
   selector:
     app: hello-world
   ports:
     - protocol: TCP
       port: 8081
       targetPort: 8081
+
+# ---------------------------------------------------------
+# 3. Pod volume
+# ---------------------------------------------------------
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-hello-world
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+
