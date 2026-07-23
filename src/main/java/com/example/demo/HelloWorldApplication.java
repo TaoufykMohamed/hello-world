@@ -14,10 +14,6 @@ public class HelloWorldApplication {
 		SpringApplication.run(HelloWorldApplication.class, args);
 	}
 
-	@GetMapping("/test-webhook")
-	public String testWebhook() {
-		return "Le webhook fonctionne parfaitement !";
-	}
 	// Cette annotation indique que les requêtes HTTP GET sur la racine ("/")
 	// déclencheront cette méthode
 	@GetMapping("/")
