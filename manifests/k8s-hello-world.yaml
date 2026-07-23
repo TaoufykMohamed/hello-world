@@ -8,7 +8,7 @@ metadata:
   labels:
     app: hello-world
 spec:
-  replicas: 10
+  replicas: 4
   selector:
     matchLabels:
       app: hello-world
