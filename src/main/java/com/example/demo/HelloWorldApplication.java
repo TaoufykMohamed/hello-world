@@ -18,6 +18,6 @@ public class HelloWorldApplication {
 	// déclencheront cette méthode
 	@GetMapping("/")
 	public String hello() {
-		return "Hello World Test Test";
+		return "Hello World ";
 	}
 }
